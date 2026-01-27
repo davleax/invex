@@ -36,4 +36,22 @@ public class EmployeeController {
         return employeeDto.map(ResponseEntity::ok).orElseGet(()-> ResponseEntity.notFound().build());
 
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable Long id, @RequestBody EmployeeDto dto){
+        try{
+
+            EmployeeDto employeeDto = employeeService.updateEmployee(id, dto);
+            return  ResponseEntity.ok(employeeDto);
+        }catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteEmployee(@PathVariable Long id){
+        employeeService.deleteEmployee(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

@@ -57,7 +57,7 @@ public class EmployyeServiceImpl implements EmployeeService {
 
     @Override
     public void deleteEmployee(Long id) {
-
+        employeeRepository.deleteById(id);
     }
 
     private EmployeeDto convertToDTO(Employee employee){
