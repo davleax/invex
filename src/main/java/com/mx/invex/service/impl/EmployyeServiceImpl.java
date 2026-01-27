@@ -60,6 +60,13 @@ public class EmployyeServiceImpl implements EmployeeService {
         employeeRepository.deleteById(id);
     }
 
+    @Override
+    public List<EmployeeDto> findEmployeeByName(String firstName) {
+        return employeeRepository.findEmployeeByFirstName(firstName).stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
     private EmployeeDto convertToDTO(Employee employee){
         return  new EmployeeDto(employee);
     }

@@ -54,4 +54,11 @@ public class EmployeeController {
         return ResponseEntity.noContent().build();
     }
 
+
+    @GetMapping("/byName/{name}")
+    public List<EmployeeDto> getAllEmployessByname(@PathVariable String name){
+
+        return employeeService.findEmployeeByName(name);
+    }
+
 }

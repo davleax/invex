@@ -12,4 +12,5 @@ public interface EmployeeService {
     EmployeeDto saveEmployee(EmployeeDto employeeDTO);
     EmployeeDto updateEmployee(Long id, EmployeeDto employeeDTO);
     void deleteEmployee(Long id);
+    List<EmployeeDto> findEmployeeByName(String firstName);
 }
