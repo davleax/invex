@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import com.mx.invex.util.Constants;
 
 @RestController
 @RequestMapping("/api/employees")
@@ -30,14 +31,14 @@ public class EmployeeController {
         return employeeService.saveEmployee(employeeDto);
 
     }
-    @GetMapping("/{id}")
+    @GetMapping(Constants.ID_SEARCH)
     public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Long id){
         Optional<EmployeeDto> employeeDto =employeeService.getEmployeeById(id);
         return employeeDto.map(ResponseEntity::ok).orElseGet(()-> ResponseEntity.notFound().build());
 
     }
 
-    @PutMapping("{id}")
+    @PutMapping(Constants.ID_SEARCH)
     public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable Long id, @RequestBody EmployeeDto dto){
         try{
 
@@ -48,14 +49,14 @@ public class EmployeeController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(Constants.ID_SEARCH)
     public ResponseEntity<Void> deleteEmployee(@PathVariable Long id){
         employeeService.deleteEmployee(id);
         return ResponseEntity.noContent().build();
     }
 
 
-    @GetMapping("/byName/{name}")
+    @GetMapping(Constants.ID_SEARCH_BY_NAME)
     public List<EmployeeDto> getAllEmployessByname(@PathVariable String name){
 
         return employeeService.findEmployeeByName(name);
