@@ -4,6 +4,8 @@ import com.mx.invex.dto.EmployeeDto;
 import com.mx.invex.entity.Employee;
 import com.mx.invex.repository.EmployeeRepository;
 import com.mx.invex.service.EmployeeService;
+import com.mx.invex.util.Constants;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -12,6 +14,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class EmployyeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
@@ -23,6 +26,7 @@ public class EmployyeServiceImpl implements EmployeeService {
 
     @Override
     public List<EmployeeDto> getAllEmployees() {
+        log.info(Constants.SEARCH_EMPLOYEE);
         return employeeRepository.findAll().stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
