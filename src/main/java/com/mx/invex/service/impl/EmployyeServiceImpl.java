@@ -62,7 +62,7 @@ public class EmployyeServiceImpl implements EmployeeService {
 
     @Override
     public List<EmployeeDto> findEmployeeByName(String firstName) {
-        return employeeRepository.findEmployeeByFirstName(firstName).stream()
+        return employeeRepository.findEmployeeByFirstNameContainingIgnoreCase(firstName).stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
